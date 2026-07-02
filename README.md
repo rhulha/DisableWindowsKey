@@ -9,8 +9,12 @@ running in the system tray until you quit it.
 
 - Installs a low-level keyboard hook on startup that swallows every left Windows
   key press. The right Windows key and all other keys are untouched.
-- Lives in the system tray. Right-click the tray icon and choose **Quit** to stop
-  and restore the key.
+- Lives in the system tray with an icon that shows the current state:
+  - **Blue Windows flag with a red "no" symbol** — blocking is on.
+  - **Grey Windows flag** — blocking is off, the key works normally.
+- **Right-click** the tray icon for a menu with **Enable/Disable** (toggles
+  blocking; the icon and label update to match) and **Quit** (restores the key
+  and exits).
 
 ## Build
 
