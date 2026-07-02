@@ -21,6 +21,8 @@ enum UserEvent {
 
 const TIP_ON: &str = "Windows key blocked";
 const TIP_OFF: &str = "Windows key allowed";
+const MENU_DISABLE: &str = "Disable WinKey";
+const MENU_ENABLE: &str = "Enable WinKey";
 
 fn main() {
   let event_loop = EventLoopBuilder::<UserEvent>::with_user_event().build();
@@ -33,7 +35,7 @@ fn main() {
   let icon_on = icon::blocked();
   let icon_off = icon::allowed();
 
-  let toggle_i = MenuItem::new("Disable", true, None);
+  let toggle_i = MenuItem::new(MENU_ENABLE, true, None);
   let quit_i = MenuItem::new("Quit", true, None);
   let tray_menu = Menu::new();
   tray_menu.append_items(&[&toggle_i, &quit_i]).unwrap();
@@ -68,7 +70,7 @@ fn main() {
           } else {
             disable_key::detach();
           }
-          toggle_i.set_text(if enabled { "Disable" } else { "Enable" });
+          toggle_i.set_text(if enabled { MENU_ENABLE } else { MENU_DISABLE });
           if let Some(tray) = &tray_icon {
             tray.set_icon(Some(if enabled { icon_on.clone() } else { icon_off.clone() })).ok();
             tray.set_tooltip(Some(if enabled { TIP_ON } else { TIP_OFF })).ok();
